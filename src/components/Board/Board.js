@@ -3,18 +3,19 @@ import "./Board.css"
 import Card from "../Card/Card"
 
 export default function Board() {
+    const [gameEnded, setGameEnded] = useState(false)
+
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
    
     //fetch data, shuffle and create array
     useEffect(() => {
-     fetch(`https://api.thecatapi.com/v1/breeds?limit=6`)
+     fetch(`https://api.thecatapi.com/v1/breeds?limit=2`)
       .then((response) => response.json())
       .then(data => {
 
-            //SHUFFLECARDS(data.concat(data))
-          const cats = data.concat(data)
+          const cats = shuffleCards(data.concat(data))
           .map( (cat, i) => ({
               name: cat.name, //instead of id
               imgUrl: cat.image.url,
@@ -77,12 +78,19 @@ export default function Board() {
         cards[position].matched = true
         setData(cards)
     }
+
+    //checking if game ends
+    useEffect(() => {
+        if(!loading && !data.filter(cat => !cat.matched).length){
+            setGameEnded(true)
+        }
+    }, [data])
    
     return (
         <section className = "board">
             {error && <div className = "err-msg">FAILED TO LOAD CATS</div>}
             {
-            loading ? 
+            loading && !gameEnded ? 
                 <p>"loading..."</p> :  
                 <>{data.map( cat => {
                     return (
@@ -99,6 +107,9 @@ export default function Board() {
                     )
                 })}
                 </>
+            }
+            {
+                gameEnded && <div>ENDMODAL</div>
             }
         </section>
     )

@@ -1,23 +1,27 @@
-//copied from geeksforgeeks
-// import { useState, useEffect } from "react"
+//COPIED from https://w3collective.com/react-stopwatch/
+import { useEffect } from "react"
 
-// export default function Stopwatch(){
+export default function Stopwatch(props){
+    const {time, setTime, running} = props
 
-//     const [isActive, setIsActive] = useState(false)
-//     const [time, setTime] = useState(0)
+    useEffect(() => {
+        let interval;
+        if (running) {
+          interval = setInterval(() => {
+            setTime((prevTime) => prevTime + 10);
+          }, 10);
+        } else if (!running) {
+          clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+      }, [running]);
 
-//     useEffect(() => {
 
-//         let interval = null
-
-//         if(!isActive){
-//             interval = setInterval(() => {
-//                 setTime((time) => time + 10);
-//               }, 10);
-//         } else{
-//             clearInterval(interval)
-//         }
-//     })
-
-//     return <div class = "timer">TIMER</div>
-//}
+    return(
+        <div className="stopwatch">
+            <span  className = "craft-red-text">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+            <span  className = "craft-red-text">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+            <span  className = "craft-red-text">{("0" + ((time / 10) % 100)).slice(-2)}</span>
+        </div>
+    )
+}

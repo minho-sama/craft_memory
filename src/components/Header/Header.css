@@ -20,9 +20,14 @@ header{
     padding-top: 10px
 }
 
-header .timer{
+header .stopwatch{
     font-weight: 900;
     font-size: 20px;
+    padding:5px;
+}
+
+header .stopwatch span{
+    padding: 3px;
 }
 
 header .record{

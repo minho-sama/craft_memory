@@ -3,13 +3,17 @@ import Logo from './Logo/Logo'
 import Stopwatch from './Stopwatch/Stopwatch'
 
 export default function Header(props){
-    const {gameOn, playerNum} = props
+    const {gameOn, playerNum, time, setTime, running, setRunning} = props
 
     if(gameOn && playerNum === 1){
         return (
             <header>
                 <Logo></Logo>
-                <div className = "timer craft-red-text">TIMER</div>
+                <Stopwatch
+                    time = {time}
+                    setTime = {setTime}
+                    running = {running}
+                ></Stopwatch>
                 <div className = "record">Your record: 5</div>
             </header>
         )
@@ -29,6 +33,10 @@ export default function Header(props){
     }
 
     return (
-        <Logo></Logo>
+        <>
+        <header>
+            <Logo></Logo>
+        </header>
+        </>
     )
 }
