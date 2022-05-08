@@ -30,6 +30,7 @@ header .stopwatch span{
     padding: 3px;
 }
 
-header .record{
-
+header .record p{
+    margin-block-end: 0;
+    margin-bottom: 5px;
 }

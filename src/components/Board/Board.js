@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import "./Board.css"
 import Card from "../Card/Card"
+import Endmodal from "../Endmodal/Endmodal";
 
-export default function Board() {
-    const [gameEnded, setGameEnded] = useState(false)
+export default function Board(props) {
+    const {gameEnded, setGameEnded, setRunning} = props
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -33,7 +34,6 @@ export default function Board() {
     }, []);
 
     function flipCard (position){
-
         const cards = [...data]
         cards[position].flipped = !cards[position].flipped
         setData(cards)
@@ -41,22 +41,12 @@ export default function Board() {
         compareCards()
     }
 
-    //runs when player flips card
-    //ha csak ez az egy function lesz benne akkor felesleges a useEffect es mehet handlecardflipbe
-    //vagy pont h maradjon mert ez igy more expressive: side effectje annak, hogy flippelte a cardot
-    // useEffect(() =>{
-    //     console.log("loop over data array, if there is flipped, put it into flipped variable. if match then set to match. if 2 cards then settimeout -> flipped var lenullázni")
-    //     compareCards()
-    // }, [data])
-
 
     function compareCards(){
 
         const flippedCards =  [...data].filter(card => card.flipped)
 
-        if(flippedCards.length < 2) {
-            return
-        }
+        if(flippedCards.length < 2) return
 
         if(flippedCards[0].name === flippedCards[1].name){
             setTimeout(() => {
@@ -83,6 +73,7 @@ export default function Board() {
     useEffect(() => {
         if(!loading && !data.filter(cat => !cat.matched).length){
             setGameEnded(true)
+            setRunning(false)
         }
     }, [data])
    
@@ -105,11 +96,11 @@ export default function Board() {
                             key = {cat.position}>
                         </Card>
                     )
-                })}
+                    })}
                 </>
             }
             {
-                gameEnded && <div>ENDMODAL</div>
+                gameEnded && <Endmodal></Endmodal>
             }
         </section>
     )

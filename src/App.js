@@ -6,7 +6,8 @@ import Header from './components/Header/Header'
 
 function App() {
 
-  const [gameOn, setGameOn] = useState(false)
+  const [gameStarted, setgameStarted] = useState(false)
+  const [gameEnded, setGameEnded] = useState(false)
 
   const [playerNum, setplayerNum] = useState(1)
   const [playerTurn, setPlayerTurn] = useState(1)
@@ -17,34 +18,33 @@ function App() {
 
 
   function choosePlayerNum(players){
-    setGameOn(true)
+    setgameStarted(true)
     setplayerNum(players)
   }
 
   const headerProps = {
-    gameOn: gameOn,
+    gameStarted: gameStarted,
     playerNum: playerNum,
-    playerTurn: playerTurn,
     time:time,
     setTime: setTime,
     running: running
   }
 
-//STOPWATCH STUFF
-//   <div className="buttons">
-//   <button onClick={() => setRunning(true)}>Start</button>
-//   <button onClick={() => setRunning(false)}>Stop</button>
-//   <button onClick={() => setTime(0)}>Reset</button>       
-// </div>
-
   return (
     <div className="App">
       <Header {...headerProps}></Header>
       <article>
-        {gameOn ? 
-          <Board></Board> : 
-          <StartModal choosePlayerNum = {choosePlayerNum} setRunning = {setRunning}></StartModal>
-          }
+        {gameStarted ? 
+          <Board
+            gameEnded = {gameEnded} 
+            setGameEnded = {setGameEnded}
+            setRunning = {setRunning}>
+          </Board> : 
+          <StartModal 
+            choosePlayerNum = {choosePlayerNum} 
+            setRunning = {setRunning}>
+          </StartModal>
+        }
       </article>
     </div>
   );

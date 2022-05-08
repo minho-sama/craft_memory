@@ -1,9 +1,7 @@
-import "./StartModal.css"
-
 export default function StartModal(props){
     const {choosePlayerNum, setRunning} = props
 
-    return <article className = "start-modal">
+    return <article className = "modal">
         <h2>Please choose the number of players</h2>
         <div>
             <button onClick = {() => {
