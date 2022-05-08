@@ -1,14 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import './Header.css'
 import Logo from './Logo/Logo'
 import Stopwatch from './Stopwatch/Stopwatch'
+import {PlayersContext} from '../../App'
 
 export default function Header(props){
-    const [record, setRecord] = useState(null)
+    const {playerNum, playerTurn, P1score, P2score} = useContext(PlayersContext);
 
+    const [record, setRecord] = useState(null)
     const {
         gameStarted,
-        playerNum,
         time,
         setTime,
         running
@@ -44,9 +45,9 @@ export default function Header(props){
                     localStorage.getItem("pr") && 
                     <div className = "record">
                         <p>Your record: </p>       
-                        <span  className = "craft-red-text">{("0" + Math.floor((record / 60000) % 60)).slice(-2)}:</span>
-                        <span  className = "craft-red-text">{("0" + Math.floor((record / 1000) % 60)).slice(-2)}:</span>
-                        <span  className = "craft-red-text">{("0" + ((record / 10) % 100)).slice(-2)}</span>
+                        <span  className = "craft-text red">{("0" + Math.floor((record / 60000) % 60)).slice(-2)}:</span>
+                        <span  className = "craft-text red">{("0" + Math.floor((record / 1000) % 60)).slice(-2)}:</span>
+                        <span  className = "craft-text red">{("0" + ((record / 10) % 100)).slice(-2)}</span>
                     </div>
                 }
             </header>
@@ -57,10 +58,19 @@ export default function Header(props){
         return (
             <header>
                 <Logo></Logo>
-                <div className = "playerturn">PLAYERTURN</div>
+                <div className = "playerturn">
+                    PLAYER 
+                    <span className={'craft-text ' + (playerTurn === 1 ? "red" : "blue")}>
+                        {playerTurn}
+                    </span>
+                </div>
                 <div className = "player-score-container">
-                    <div>Player 1 score: </div>
-                    <div>Player 2 score: </div>
+                    <div> P1 SCORE
+                        <span className='craft-text red score'>   {P1score}</span>
+                    </div>
+                    <div> P2 SCORE 
+                        <span className='craft-text blue score'>   {P2score}</span>
+                    </div>
                 </div>
             </header>
         )

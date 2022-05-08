@@ -12,7 +12,7 @@ export default function Board(props) {
    
     //fetch data, shuffle and create array
     useEffect(() => {
-     fetch(`https://api.thecatapi.com/v1/breeds?limit=2`)
+     fetch(`https://api.thecatapi.com/v1/breeds?limit=3`)
       .then((response) => response.json())
       .then(data => {
 

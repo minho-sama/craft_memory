@@ -19,9 +19,9 @@ export default function Stopwatch(props){
 
     return(
         <div className="stopwatch">
-            <span  className = "craft-red-text">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
-            <span  className = "craft-red-text">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
-            <span  className = "craft-red-text">{("0" + ((time / 10) % 100)).slice(-2)}</span>
+            <span  className = "craft-text red">{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
+            <span  className = "craft-text red">{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
+            <span  className = "craft-text red">{("0" + ((time / 10) % 100)).slice(-2)}</span>
         </div>
     )
 }

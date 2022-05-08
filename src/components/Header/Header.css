@@ -34,3 +34,11 @@ header .record p{
     margin-block-end: 0;
     margin-bottom: 5px;
 }
+
+header span{
+    font-weight: 900
+}
+
+header span.score{
+    font-weight: 900;
+}

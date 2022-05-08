@@ -1,3 +1,4 @@
+//if 2 player: player 2 wins!!!
 
 export default function Endmodal(){
     return (
