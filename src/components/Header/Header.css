@@ -1,0 +1,30 @@
+header{
+    color: rgb(0,0,0);
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    letter-spacing: 0.2rem;
+}
+
+.logo{
+    width: max-content;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.gh-logo{
+    color: rgb(0,0,0);
+    padding-top: 10px
+}
+
+header .timer{
+    font-weight: 900;
+    font-size: 20px;
+}
+
+header .record{
+
+}
