@@ -14,7 +14,7 @@ export default function Board(props) {
    
     //fetch data, shuffle and create array
     useEffect(() => {
-     fetch(`https://api.thecatapi.com/v1/breeds?limit=3`)
+     fetch(`https://api.thecatapi.com/v1/breeds?limit=5`)
       .then((response) => response.json())
       .then(data => {
 
@@ -28,11 +28,13 @@ export default function Board(props) {
           }))
 
           setData(cats)
+
         })
         .catch(err => {
             setError(err)
         })
         .finally(() => setLoading(false))
+        
     }, []);
 
     function flipCard (position){

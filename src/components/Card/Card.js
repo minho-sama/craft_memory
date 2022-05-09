@@ -1,6 +1,10 @@
 import './Card.css'
+import { useContext } from 'react'
+import { PlayersContext } from '../../App'
 
 export default function Card(props){
+
+    const {playerTurn} = useContext(PlayersContext) //for css only
     
     const {
         name, 
@@ -27,7 +31,11 @@ export default function Card(props){
         }
             onClick = {() => handleCardClick() }>
             <img src = {imgUrl}></img>
-            <div className = "card-cover"></div>
+            <div className = {
+                "card-cover " +
+                (playerTurn === 1 ? "" : "cover-p2")
+                }>
+            </div>
         </div>
     ) 
 }

@@ -13,7 +13,7 @@ export default function Endmodal(){
                 && 
                 <div className = "winner">
                     Player
-                    <p className = {"craft-text " + (P1score > P2score ? "red" : "blue")}>
+                    <p className = {"craft-text " + (P1score > P2score ? "blue" : "red")}>
                         {P1score > P2score ? 1 : 2}
                     </p>
                     won!

@@ -60,16 +60,16 @@ export default function Header(props){
                 <Logo></Logo>
                 <div className = "playerturn">
                     PLAYER 
-                    <span className={'craft-text ' + (playerTurn === 1 ? "red" : "blue")}>
+                    <span className={'craft-text ' + (playerTurn === 1 ? "blue" : "red")}>
                         {playerTurn}
                     </span>
                 </div>
                 <div className = "player-score-container">
                     <div> P1 SCORE
-                        <span className='craft-text red score'>   {P1score}</span>
+                        <span className='craft-text blue score'>   {P1score}</span>
                     </div>
                     <div> P2 SCORE 
-                        <span className='craft-text blue score'>   {P2score}</span>
+                        <span className='craft-text red score'>   {P2score}</span>
                     </div>
                 </div>
             </header>
