@@ -1,6 +1,6 @@
 import {GoMarkGithub} from 'react-icons/go'
 
-export default function Logo(){
+export default function Logo():JSX.Element{
     return (
         <div className = "logo">
             <h1>Cats</h1>

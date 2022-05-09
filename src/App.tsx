@@ -4,9 +4,11 @@ import Board  from './components/Board/Board';
 import {StartModal} from './components/StartModal/StartModal'
 import Header from './components/Header/Header'
 
+// type OneTwo = 1|2
+
 type PlayersContextTypes = {
   playerNum: number, //1|2
-  playerTurn: number,//1|2
+  playerTurn: number, //1|2
   P1score: number,
   P2score: number,
   setPlayerTurn: React.Dispatch<React.SetStateAction<number>>,
@@ -19,15 +21,15 @@ const PlayersContextInitialState = {
   playerTurn: 1,
   P1score: 0,
   P2score: 0,
-  setPlayerTurn: () =>{},
-  setP1score: () =>{},
-  setP2score: () =>{}
+  setPlayerTurn: () => {},
+  setP1score: () => {},
+  setP2score: () => {}
 }
 
 export const PlayersContext = createContext<PlayersContextTypes>(PlayersContextInitialState)
 
 
-const App = () => {
+const App = ():JSX.Element => {
 
   const [gameStarted, setgameStarted] = useState<boolean>(false)
   const [gameEnded, setGameEnded] = useState<boolean>(false)
@@ -39,8 +41,8 @@ const App = () => {
 
 
   //stopwatch
-  const [time, setTime] = useState(0);
-  const [running, setRunning] = useState(false); 
+  const [time, setTime] = useState<number>(0);
+  const [running, setRunning] = useState<boolean>(false); 
 
 
   function choosePlayerNum(players:1|2): void{ //1|2

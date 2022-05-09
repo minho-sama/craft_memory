@@ -7,7 +7,7 @@ type StopwatchProps = {
   running: boolean
 }
 
-const Stopwatch = (props:StopwatchProps) => {
+const Stopwatch = (props:StopwatchProps):JSX.Element => {
     const {time, setTime, running} = props
 
     useEffect(() => {

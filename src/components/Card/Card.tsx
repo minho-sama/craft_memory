@@ -16,10 +16,11 @@ type CardProps = {
     matched: boolean,
     position:number,
     flipCard: Function,
-    data: Cat[]
+    data: Cat[],
+    children?: React.ReactNode;
 }
 
-const Card = (props:CardProps) => {
+const Card = (props:CardProps):JSX.Element => {
 
     const {playerNum, playerTurn} = useContext(PlayersContext) //for css only
     
@@ -32,7 +33,7 @@ const Card = (props:CardProps) => {
         data
     } = props
 
-    function handleCardClick(){
+    function handleCardClick(): void{
         //prevent quick clicking
         if(data.filter((card:Cat) => card.flipped).length >= 2) return
         if(flipped) return

@@ -11,7 +11,7 @@ type HeaderProps = {
     running: boolean
 }
 
-const Header = (props:HeaderProps) => {
+const Header = (props:HeaderProps):JSX.Element => {
     const {playerNum, playerTurn, P1score, P2score} = useContext(PlayersContext);
 
     const [record, setRecord] = useState<number>(0)
@@ -23,7 +23,7 @@ const Header = (props:HeaderProps) => {
         running
     } = props
 
-    useEffect(() => {
+    useEffect(():void => {
         const savedRecord = Number(localStorage.getItem("pr"))
         if(savedRecord){
             setRecord(savedRecord)
