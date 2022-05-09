@@ -1,13 +1,21 @@
-import { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './Header.css'
 import Logo from './Logo/Logo'
 import Stopwatch from './Stopwatch/Stopwatch'
 import {PlayersContext} from '../../App'
 
-export default function Header(props){
+type HeaderProps = {
+    gameStarted: boolean,
+    time: number,
+    setTime: React.Dispatch<React.SetStateAction<number>>, 
+    running: boolean
+}
+
+const Header = (props:HeaderProps) => {
     const {playerNum, playerTurn, P1score, P2score} = useContext(PlayersContext);
 
-    const [record, setRecord] = useState(null)
+    const [record, setRecord] = useState<number>(0)
+
     const {
         gameStarted,
         time,
@@ -19,16 +27,14 @@ export default function Header(props){
         const savedRecord = Number(localStorage.getItem("pr"))
         if(savedRecord){
             setRecord(savedRecord)
-        }
-
-        if(record === null){
+        } else {
             setRecord(Number.MAX_SAFE_INTEGER)
         }
 
         //checking if new record (1 player mode)
         if(time < record && time !== 0){ //time is 0 at initial rendering
             setRecord(time)
-            localStorage.setItem("pr", time)
+            localStorage.setItem("pr", String(time))
         }
     }, [running])
 
@@ -84,3 +90,5 @@ export default function Header(props){
         </>
     )
 }
+
+export default Header

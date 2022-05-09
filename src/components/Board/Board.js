@@ -4,7 +4,33 @@ import Card from "../Card/Card"
 import Endmodal from "../Endmodal/Endmodal";
 import {PlayersContext} from '../../App'
 
-export default function Board(props) {
+// type CatList = {
+//         name:string,
+//         imgUrl: string,
+//         flipped: boolean,
+//         matched: boolean,
+//         position: number
+//     }[]
+
+// type Cat = {
+//         name:string,
+//         imgUrl: string,
+//         flipped: boolean,
+//         matched: boolean,
+//         position: number,
+// }
+
+// type CatFromServer = {
+
+// }
+
+// type BoardProps = {
+//     gameEnded: boolean,
+//     setGameEnded: React.Dispatch<React.SetStateAction<boolean>>,
+//     setRunning: React.Dispatch<React.SetStateAction<boolean>>
+// }
+
+const Board = (props) => {
     const {playerTurn, setPlayerTurn, setP1score, setP2score} = useContext(PlayersContext)
     const {gameEnded, setGameEnded, setRunning} = props
 
@@ -14,7 +40,7 @@ export default function Board(props) {
    
     //fetch data, shuffle and create array
     useEffect(() => {
-     fetch(`https://api.thecatapi.com/v1/breeds?limit=5`)
+     fetch(`https://api.thecatapi.com/v1/breeds?limit=3`)
       .then((response) => response.json())
       .then(data => {
 
@@ -45,7 +71,6 @@ export default function Board(props) {
         compareCards()
     }
  
-
     function compareCards(){
 
         const flippedCards =  [...data].filter(card => card.flipped)
@@ -63,7 +88,7 @@ export default function Board(props) {
             
         } else{
             setTimeout(() => {
-                flippedCards.forEach(card => flipCard(card.position))
+                flippedCards.forEach((card) => flipCard(card.position))
 
                 //2player mode
                 setPlayerTurn(() => playerTurn === 1 ?  2 : 1)
@@ -128,3 +153,5 @@ export default function Board(props) {
     }
     return cards
 }
+
+export default Board

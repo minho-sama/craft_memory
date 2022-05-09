@@ -1,11 +1,17 @@
 //COPIED from https://w3collective.com/react-stopwatch/
 import { useEffect } from "react"
 
-export default function Stopwatch(props){
+type StopwatchProps = {
+  time: number,
+  setTime: React.Dispatch<React.SetStateAction<number>>,
+  running: boolean
+}
+
+const Stopwatch = (props:StopwatchProps) => {
     const {time, setTime, running} = props
 
     useEffect(() => {
-        let interval;
+        let interval:any;
         if (running) {
           interval = setInterval(() => {
             setTime((prevTime) => prevTime + 10);
@@ -25,3 +31,5 @@ export default function Stopwatch(props){
         </div>
     )
 }
+
+export default Stopwatch

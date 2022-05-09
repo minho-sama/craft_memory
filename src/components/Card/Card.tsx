@@ -2,7 +2,24 @@ import './Card.css'
 import { useContext } from 'react'
 import { PlayersContext } from '../../App'
 
-export default function Card(props){
+type Cat = {
+        name:string,
+        imgUrl: string,
+        flipped: boolean,
+        matched: boolean,
+        position: number,
+}
+
+type CardProps = {
+    imgUrl: string,
+    flipped: boolean,
+    matched: boolean,
+    position:number,
+    flipCard: Function,
+    data: Cat[]
+}
+
+const Card = (props:CardProps) => {
 
     const {playerNum, playerTurn} = useContext(PlayersContext) //for css only
     
@@ -15,11 +32,9 @@ export default function Card(props){
         data
     } = props
 
-    console.log(imgUrl)
-
     function handleCardClick(){
         //prevent quick clicking
-        if(data.filter(card => card.flipped).length >= 2) return
+        if(data.filter((card:Cat) => card.flipped).length >= 2) return
         if(flipped) return
         flipCard(position)
     }
@@ -40,3 +55,5 @@ export default function Card(props){
         </div>
     ) 
 }
+
+export default Card

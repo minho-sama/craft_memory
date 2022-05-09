@@ -1,4 +1,9 @@
-export default function StartModal(props){
+// type StartModalProps = {
+//     choosePlayerNum: any,
+//     setRunning: React.Dispatch<React.SetStateAction<boolean>>
+// }
+
+export const StartModal = (props) => {
     const {choosePlayerNum, setRunning} = props
 
     return <article className = "modal">
