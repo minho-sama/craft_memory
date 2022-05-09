@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./Board.css"
 import Card from "../Card/Card"
 import Endmodal from "../Endmodal/Endmodal";
+import {PlayersContext} from '../../App'
 
 export default function Board(props) {
+    const {playerTurn, setPlayerTurn, setP1score, setP2score} = useContext(PlayersContext)
     const {gameEnded, setGameEnded, setRunning} = props
 
     const [data, setData] = useState([]);
@@ -40,7 +42,7 @@ export default function Board(props) {
 
         compareCards()
     }
-
+ 
 
     function compareCards(){
 
@@ -52,11 +54,17 @@ export default function Board(props) {
             setTimeout(() => {
                 flippedCards.forEach(card => setCardToMatched(card.position))
                 flippedCards.forEach(card => flipCard(card.position))
+
+                //2 player mode
+                playerTurn === 1 ?  setP1score(prevScore => prevScore+1) :  setP2score(prevScore => prevScore+1) 
             }, 1000)
             
         } else{
             setTimeout(() => {
                 flippedCards.forEach(card => flipCard(card.position))
+
+                //2player mode
+                setPlayerTurn(() => playerTurn === 1 ?  2 : 1)
             }, 1000);
         }
 
@@ -73,7 +81,10 @@ export default function Board(props) {
     useEffect(() => {
         if(!loading && !data.filter(cat => !cat.matched).length){
             setGameEnded(true)
-            setRunning(false)
+            setRunning(false) //stopping stopwatch
+
+            //2 player mode
+
         }
     }, [data])
    

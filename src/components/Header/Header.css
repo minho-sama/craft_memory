@@ -9,10 +9,17 @@ header{
 
 .logo{
     width: max-content;
-    margin-left: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
+    margin-left: 20px;
+    display: none
+}
+
+@media only screen and (min-width: 450px) {
+    .logo {
+        display:flex !important
+    }
 }
 
 .gh-logo{

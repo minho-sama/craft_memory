@@ -37,7 +37,7 @@ function App() {
 
   return (
     <div className="App">
-      <PlayersContext.Provider value = {{playerNum, playerTurn, P1score, P2score}}>
+      <PlayersContext.Provider value = {{playerNum, playerTurn, P1score, P2score, setPlayerTurn, setP1score, setP2score}}>
         <Header {...headerProps}></Header>
         <article>
           {gameStarted ? 
