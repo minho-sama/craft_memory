@@ -4,10 +4,9 @@ import { PlayersContext } from '../../App'
 
 export default function Card(props){
 
-    const {playerTurn} = useContext(PlayersContext) //for css only
+    const {playerNum, playerTurn} = useContext(PlayersContext) //for css only
     
     const {
-        name, 
         imgUrl, 
         flipped, 
         matched, 
@@ -15,6 +14,8 @@ export default function Card(props){
         flipCard,
         data
     } = props
+
+    console.log(imgUrl)
 
     function handleCardClick(){
         //prevent quick clicking
@@ -33,7 +34,7 @@ export default function Card(props){
             <img src = {imgUrl}></img>
             <div className = {
                 "card-cover " +
-                (playerTurn === 1 ? "" : "cover-p2")
+                ( playerNum === 2 ? playerTurn === 1 ? "" : "cover-p2": "")
                 }>
             </div>
         </div>
