@@ -3,7 +3,7 @@ import { PlayersContext } from "../../App"
 
 //there is no draw, since there are odd number of pairs
 
-export default function Endmodal(): JSX.Element{
+export default function EndModal(): JSX.Element{
     const {playerNum, P1score, P2score} = useContext(PlayersContext)
 
     return (

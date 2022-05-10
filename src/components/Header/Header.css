@@ -31,6 +31,7 @@ header .stopwatch{
     font-weight: 900;
     font-size: 20px;
     padding:5px;
+    font-family: monospace
 }
 
 header .stopwatch span{

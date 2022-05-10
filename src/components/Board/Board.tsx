@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import "./Board.css"
 import Card from "../Card/Card"
-import Endmodal from "../Endmodal/Endmodal";
+import EndModal from "../EndModal/EndModal";
 import {PlayersContext} from '../../App'
 
 type Cat = {
@@ -27,6 +27,16 @@ type BoardProps = {
     setGameEnded: React.Dispatch<React.SetStateAction<boolean>>,
     setRunning: React.Dispatch<React.SetStateAction<boolean>>,
     children?: React.ReactNode; //via https://stackoverflow.com/questions/59106742/typescript-error-property-children-does-not-exist-on-type-reactnode
+}
+
+function shuffleCards (cards: CatFromApi[]){
+    for (var i = 0; i < cards.length; i++) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = cards[i];
+        cards[i] = cards[j];
+        cards[j] = temp;
+    }
+    return cards
 }
 
 const Board = (props:BoardProps):JSX.Element => {
@@ -78,8 +88,9 @@ const Board = (props:BoardProps):JSX.Element => {
 
         const flippedCards =  [...data].filter(card => card.flipped)
 
-        if(flippedCards.length < 2) return
+        if(flippedCards.length < 2) return //prevents unnecessary comparing (also prevents running compareCards() recursively)
 
+        //cards matching
         if(flippedCards[0].name === flippedCards[1].name){
             setTimeout(():void => {
                 flippedCards.forEach(card => setCardToMatched(card.position))
@@ -89,8 +100,8 @@ const Board = (props:BoardProps):JSX.Element => {
                 playerTurn === 1 ?  setP1score((prevScore) => prevScore+1) :  setP2score(prevScore => prevScore+1) 
             }, 1000)
             
-        } else{
-            setTimeout(():void => {
+        } else{ //cards not matching
+            setTimeout(():  void => {
                 flippedCards.forEach((card) => flipCard(card.position))
 
                 //2player mode
@@ -106,8 +117,8 @@ const Board = (props:BoardProps):JSX.Element => {
     }
 
     //checking if game ends
-    useEffect(():void => {
-        if(!loading && !data.filter(cat => !cat.matched).length){
+    useEffect((): void => {
+        if(!loading && !data.filter(cat => !cat.matched).length){ //!==0
             setGameEnded(true)
             setRunning(false) //stopping stopwatch
         }
@@ -136,20 +147,10 @@ const Board = (props:BoardProps):JSX.Element => {
                 </>
             }
             {
-                gameEnded && <Endmodal></Endmodal>
+                gameEnded && <EndModal></EndModal>
             }
         </section>
     )
    }
-
-   function shuffleCards (cards: CatFromApi[]){
-    for (var i = 0; i < cards.length; i++) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var temp = cards[i];
-        cards[i] = cards[j];
-        cards[j] = temp;
-    }
-    return cards
-}
 
 export default Board

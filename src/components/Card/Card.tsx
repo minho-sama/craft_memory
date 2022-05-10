@@ -3,11 +3,11 @@ import { useContext } from 'react'
 import { PlayersContext } from '../../App'
 
 type Cat = {
-        name:string,
-        imgUrl: string,
-        flipped: boolean,
-        matched: boolean,
-        position: number,
+    name:string,
+    imgUrl: string,
+    flipped: boolean,
+    matched: boolean,
+    position: number,
 }
 
 type CardProps = {

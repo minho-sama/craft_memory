@@ -1,7 +1,7 @@
 import React from "react"
 
 type StartModalProps = {
-    choosePlayerNum: any,
+    choosePlayerNum: Function, //1|2
     setRunning: React.Dispatch<React.SetStateAction<boolean>>,
     children?: React.ReactNode
 }
