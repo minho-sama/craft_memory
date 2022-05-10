@@ -118,7 +118,7 @@ const Board = (props:BoardProps):JSX.Element => {
 
     //checking if game ends
     useEffect((): void => {
-        if(!loading && !data.filter(cat => !cat.matched).length){ //!==0
+        if(!loading && !data.filter(cat => !cat.matched).length){ //===0
             setGameEnded(true)
             setRunning(false) //stopping stopwatch
         }
