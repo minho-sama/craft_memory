@@ -38,7 +38,7 @@ const Card = (props:CardProps):JSX.Element => {
     function handleCardClick(): void{
         //prevent quick clicking
         if(data.filter((card:Cat) => card.flipped).length >= 2) return
-        if(flipped) return
+        if(flipped || matched) return //pointer-eventsonly for UI
         flipCard(position)
     }
 
