@@ -26,7 +26,7 @@ type BoardProps = {
     gameEnded: boolean,
     setGameEnded: React.Dispatch<React.SetStateAction<boolean>>,
     setRunning: React.Dispatch<React.SetStateAction<boolean>>,
-    children?: React.ReactNode; //https://stackoverflow.com/questions/59106742/typescript-error-property-children-does-not-exist-on-type-reactnode
+    children?: React.ReactNode; //via https://stackoverflow.com/questions/59106742/typescript-error-property-children-does-not-exist-on-type-reactnode
 }
 
 const Board = (props:BoardProps):JSX.Element => {
@@ -69,7 +69,11 @@ const Board = (props:BoardProps):JSX.Element => {
 
         compareCards()
     }
- 
+    
+    // useEffect(() =>{
+    //     compareCards()
+    // }, [data])
+
     function compareCards(): void{
 
         const flippedCards =  [...data].filter(card => card.flipped)
@@ -93,8 +97,6 @@ const Board = (props:BoardProps):JSX.Element => {
                 setPlayerTurn(() => playerTurn === 1 ?  2 : 1)
             }, 1000);
         }
-
-        // setTimeouttal varázslat, pontot növelni, playerturn
     }
 
     function setCardToMatched(position:number): void{

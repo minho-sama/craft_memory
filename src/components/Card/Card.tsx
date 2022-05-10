@@ -23,7 +23,7 @@ type CardProps = {
 
 const Card = (props:CardProps):JSX.Element => {
 
-    const {playerNum, playerTurn} = useContext(PlayersContext) //for css only
+    const {playerNum, playerTurn} = useContext(PlayersContext)
     
     const {
         name,
@@ -38,7 +38,10 @@ const Card = (props:CardProps):JSX.Element => {
     function handleCardClick(): void{
         //prevent quick clicking
         if(data.filter((card:Cat) => card.flipped).length >= 2) return
-        if(flipped || matched) return //pointer-eventsonly for UI
+        
+        //prevents "cheating"
+        if(flipped || matched) return //"matched" css class can be removed with devtools, so it prevents clicking on matched cards again
+
         flipCard(position)
     }
 

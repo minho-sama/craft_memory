@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/craft_memory/static/css/main.cccef454.css",
-    "main.js": "/craft_memory/static/js/main.65a60281.js",
+    "main.js": "/craft_memory/static/js/main.eccd2f81.js",
     "index.html": "/craft_memory/index.html",
     "main.cccef454.css.map": "/craft_memory/static/css/main.cccef454.css.map",
-    "main.65a60281.js.map": "/craft_memory/static/js/main.65a60281.js.map"
+    "main.eccd2f81.js.map": "/craft_memory/static/js/main.eccd2f81.js.map"
   },
   "entrypoints": [
     "static/css/main.cccef454.css",
-    "static/js/main.65a60281.js"
+    "static/js/main.eccd2f81.js"
   ]
 }

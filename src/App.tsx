@@ -40,7 +40,7 @@ const App = ():JSX.Element => {
   const [P2score, setP2score] = useState<number>(0)
 
 
-  //stopwatch
+  //stopwatch states
   const [time, setTime] = useState<number>(0);
   const [running, setRunning] = useState<boolean>(false); 
 

@@ -1,9 +1,10 @@
 import { useContext } from "react"
 import { PlayersContext } from "../../App"
 
+//there is no draw, since there are odd number of pairs
+
 export default function Endmodal(): JSX.Element{
     const {playerNum, P1score, P2score} = useContext(PlayersContext)
-    //there is no draw, since there are odd number of pairs
 
     return (
         <div className = "modal end">

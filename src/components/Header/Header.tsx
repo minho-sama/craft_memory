@@ -33,8 +33,8 @@ const Header = (props:HeaderProps):JSX.Element => {
     }, [])
 
     useEffect(():void => {
-        //checking if new record (1 player mode)
-        if(time < record && gameEnded && playerNum === 1){ //time is 0 at initial rendering
+        //checking if set new record (1 player mode only)
+        if(time < record && gameEnded && playerNum === 1){
             setRecord(time)
             localStorage.setItem("pr", String(time))
         }

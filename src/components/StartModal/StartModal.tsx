@@ -7,7 +7,7 @@ type StartModalProps = {
 }
 
 export const StartModal = (props:StartModalProps):JSX.Element => {
-    const {choosePlayerNum, setRunning} = props
+    const {choosePlayerNum, setRunning} = props //starts timer as soon as player clicks on button
 
     return <article className = "modal">
         <h2>Please choose the number of players</h2>
@@ -17,7 +17,9 @@ export const StartModal = (props:StartModalProps):JSX.Element => {
                     setRunning(true)
                 }}
                 >1 PLAYER</button>
-            <button onClick = { ():void => choosePlayerNum(2)}>2 PLAYERS</button>
+            <button onClick = { ():void => choosePlayerNum(2)}>
+                2 PLAYERS
+            </button>
         </div>
     </article>
 } 

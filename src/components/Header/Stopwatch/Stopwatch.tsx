@@ -1,4 +1,4 @@
-//COPIED from https://w3collective.com/react-stopwatch/
+//via https://w3collective.com/react-stopwatch/
 import { useEffect } from "react"
 
 type StopwatchProps = {
