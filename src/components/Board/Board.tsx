@@ -120,6 +120,7 @@ const Board = (props:BoardProps):JSX.Element => {
                 <>{data.map( cat => {
                     return (
                         <Card
+                            name = {cat.name}
                             imgUrl = {cat.imgUrl} 
                             flipped = {cat.flipped}
                             matched = {cat.matched}

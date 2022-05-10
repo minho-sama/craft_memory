@@ -11,6 +11,7 @@ type Cat = {
 }
 
 type CardProps = {
+    name: string,
     imgUrl: string,
     flipped: boolean,
     matched: boolean,
@@ -25,6 +26,7 @@ const Card = (props:CardProps):JSX.Element => {
     const {playerNum, playerTurn} = useContext(PlayersContext) //for css only
     
     const {
+        name,
         imgUrl, 
         flipped, 
         matched, 
@@ -47,7 +49,7 @@ const Card = (props:CardProps):JSX.Element => {
             (matched ? " matched" : "")
         }
             onClick = {() => handleCardClick() }>
-            <img src = {imgUrl}></img>
+            <img src = {imgUrl} alt = {name}></img>
             <div className = {
                 "card-cover " +
                 ( playerNum === 2 ? playerTurn === 1 ? "" : "cover-p2": "")
