@@ -20,7 +20,7 @@ const Stopwatch = (props:StopwatchProps):JSX.Element => {
           clearInterval(interval);
         }
         return () => clearInterval(interval);
-      }, [running]);
+      }, [running, setTime]);
 
 
     return(

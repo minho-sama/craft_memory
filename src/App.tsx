@@ -44,7 +44,6 @@ const App = ():JSX.Element => {
   const [time, setTime] = useState<number>(0);
   const [running, setRunning] = useState<boolean>(false); 
 
-
   function choosePlayerNum(players:1|2): void{ //1|2
     setgameStarted(true)
     setplayerNum(players)
@@ -54,7 +53,8 @@ const App = ():JSX.Element => {
     gameStarted: gameStarted,
     time:time,
     setTime: setTime,
-    running: running
+    running: running,
+    gameEnded: gameEnded
   }
 
   return (

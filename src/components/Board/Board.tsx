@@ -109,7 +109,7 @@ const Board = (props:BoardProps):JSX.Element => {
             setGameEnded(true)
             setRunning(false) //stopping stopwatch
         }
-    }, [data])
+    }, [data, loading, setGameEnded, setRunning])
    
     return (
         <section className = "board">

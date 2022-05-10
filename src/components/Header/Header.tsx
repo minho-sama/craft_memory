@@ -8,35 +8,37 @@ type HeaderProps = {
     gameStarted: boolean,
     time: number,
     setTime: React.Dispatch<React.SetStateAction<number>>, 
-    running: boolean
+    running: boolean,
+    gameEnded: boolean
 }
 
 const Header = (props:HeaderProps):JSX.Element => {
     const {playerNum, playerTurn, P1score, P2score} = useContext(PlayersContext);
 
-    const [record, setRecord] = useState<number>(0)
+    const [record, setRecord] = useState<number>(Number.MAX_SAFE_INTEGER)
 
     const {
         gameStarted,
         time,
         setTime,
-        running
+        running,
+        gameEnded
     } = props
 
     useEffect(():void => {
         const savedRecord = Number(localStorage.getItem("pr"))
         if(savedRecord){
             setRecord(savedRecord)
-        } else {
-            setRecord(Number.MAX_SAFE_INTEGER)
         }
+    }, [])
 
+    useEffect(():void => {
         //checking if new record (1 player mode)
-        if(time < record && time !== 0){ //time is 0 at initial rendering
+        if(time < record && gameEnded && playerNum === 1){ //time is 0 at initial rendering
             setRecord(time)
             localStorage.setItem("pr", String(time))
         }
-    }, [running])
+    }, [gameEnded, record, time, playerNum])
 
     if(gameStarted && playerNum === 1){
         return (
