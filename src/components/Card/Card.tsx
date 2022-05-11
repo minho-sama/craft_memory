@@ -11,13 +11,9 @@ type Cat = {
 }
 
 type CardProps = {
-    name: string,
-    imgUrl: string,
-    flipped: boolean,
-    matched: boolean,
-    position:number,
+    cat: Cat,
     flipCard: Function,
-    data: Cat[],
+    numOfFlippedCards: number,
     children?: React.ReactNode;
 }
 
@@ -26,33 +22,29 @@ const Card = (props:CardProps):JSX.Element => {
     const {playerNum, playerTurn} = useContext(PlayersContext)
     
     const {
-        name,
-        imgUrl, 
-        flipped, 
-        matched, 
-        position, 
+        cat,
         flipCard,
-        data
+        numOfFlippedCards
     } = props
 
     function handleCardClick(): void{
         //prevent quick clicking
-        if(data.filter((card:Cat) => card.flipped).length >= 2) return
+        if(numOfFlippedCards >= 2) return
         
         //prevents "cheating"
-        if(flipped || matched) return //"matched" css class can be removed with devtools, so it prevents clicking on matched cards again
+        if(cat.flipped || cat.matched) return //"matched" css class can be removed with devtools, so it prevents clicking matched cards again
 
-        flipCard(position)
+        flipCard(cat.position)
     }
 
     return (
         <div className = {
             "card" +
-            (flipped ? " flipped" : "") +
-            (matched ? " matched" : "")
+            (cat.flipped ? " flipped" : "") +
+            (cat.matched ? " matched" : "")
         }
-            onClick = {() => handleCardClick() }>
-            <img src = {imgUrl} alt = {name}></img>
+            onClick = {handleCardClick}>
+            <img src = {cat.imgUrl} alt = {cat.name}></img>
             <div className = {
                 "card-cover " +
                 ( playerNum === 2 ? playerTurn === 1 ? "" : "cover-p2": "")
